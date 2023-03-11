@@ -1,4 +1,5 @@
 import express from "express";
+import { randomUUID } from "node:crypto";
 import { Database } from "./database";
 
 const server = express();
@@ -21,7 +22,7 @@ server.post("/", (request, response) => {
   const { name, email } = request.body;
 
   const user = {
-    id: "1",
+    id: randomUUID(),
     name: name,
     email,
   };
