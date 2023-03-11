@@ -28,7 +28,7 @@ server.post("/", (request, response) => {
 
   database.insert("user", user);
 
-  response.status(201).send();
+  response.status(201).json({ msg: "sucesso!" });
 });
 
 server.listen(port, () => {
