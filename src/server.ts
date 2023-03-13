@@ -10,8 +10,17 @@ server.use(express.json());
 
 const database = new Database();
 
+const tableUser = "user";
+
 server.get("/", (request, response) => {
-  const user = database.select("user");
+  const user = database.select(tableUser);
+  response.json(user);
+});
+
+server.get("/:id", (request, response) => {
+  const { id } = request.params;
+
+  const user = database.select(tableUser, id);
   response.json(user);
 });
 
@@ -27,9 +36,23 @@ server.post("/", (request, response) => {
     email,
   };
 
-  database.insert("user", user);
+  database.insert(tableUser, user);
 
   response.status(201).json({ msg: "sucesso!" });
+});
+
+server.delete("/:id", (request, response) => {
+  const { id } = request.params;
+
+  if (id.length === 36) {
+    const userExist = database.select(tableUser, id);
+
+    if (JSON.stringify(userExist) === "[]") {
+      return response.send("Usuário não encontrado");
+    }
+    return response.json(userExist);
+  }
+  response.send("Erro de requisição");
 });
 
 server.listen(port, () => {

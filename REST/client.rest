@@ -1,13 +1,22 @@
 ### Test Conexão
 GET http://localhost:3333
 
+### Test Conexão
+GET http://localhost:3333/5a5f9cd7-93ea-452f-a128-3bbbfe44b2fb
+
+### Test Conexão
+GET http://localhost:3333/Tiago
+
 ### Test POST
 POST http://localhost:3333
 content-type: application/json
 
 {
-    "name": "FEMA 2",
     "curso": "Tecnico em Informatica",
-    "email":"fema@fema.com",
-    "uc":"Programação WEB 3"
+    "uc":"Programação WEB 3",
+    "name": "Rafael",
+    "email":"bruno@fema.com"
 }
+
+### DELETE
+DELETE http://localhost:3333/5b428f6b-cc1b-4101-8310-42bd191cfd16
