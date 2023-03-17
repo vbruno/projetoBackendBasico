@@ -8,9 +8,6 @@ export interface IDatabase {
   email: string;
 }
 
-interface IDatabases extends Array<IDatabase> {}
-// interface EnumServiceItems extends Array<EnumServiceItem>{}
-
 export class Database {
   #database: IDatabase[][] = [];
 
@@ -25,10 +22,15 @@ export class Database {
   }
 
   #persist() {
-    fs.writeFile(databasePath, JSON.stringify(this.#database, null, 2));
+    console.log(this.#database);
+
+    // fs.writeFile(databasePath, JSON.stringify(this.#database));
+
+    console.log("---> ", typeof this.#database);
+    console.log("---> ", this.#database.toString());
   }
 
-  select(table: any, search?: any): IDatabase[] {
+  select(table: any, search?: string): IDatabase[] {
     let data = this.#database[table] ?? [];
 
     console.log(data);
@@ -64,10 +66,17 @@ export class Database {
     );
 
     if (rowIndex > -1) {
-      console.log("localizou");
-
       this.#database[table].splice(rowIndex, 1);
       this.#persist();
     }
   }
+
+  // update(table: any, id: string, data: IDatabase) {
+  //   const rowIndex = this.#database[table].findIndex((row) => row.id === id);
+
+  //   if (rowIndex > -1) {
+  //     this.#database[table][rowIndex] = { ...data };
+  //     this.#persist();
+  //   }
+  // }
 }

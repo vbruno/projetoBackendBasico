@@ -2,10 +2,6 @@ import { Router } from "express";
 import { randomUUID } from "node:crypto";
 import { Database } from "../database";
 
-interface IDatabase {
-  msg?: string;
-}
-
 const userRoutes = Router();
 
 const database = new Database();
@@ -60,5 +56,26 @@ userRoutes.delete("/:id", (request, response) => {
   }
   response.send("Erro de requisição");
 });
+
+// userRoutes.put("/:id", (request, response) => {
+//   const { id } = request.params;
+//   const { name, email } = request.body;
+
+//   if (id.length === 36) {
+//     let userExist = database.select(tableUser, id);
+
+//     if (JSON.stringify(userExist) === "[]") {
+//       return response.send("Usuário não encontrado");
+//     }
+
+//     database.update(tableUser, id, { id, name, email });
+
+//     return response.json({
+//       msg: `O usuário ${userExist[0].name} foi atualizado com sucesso!`,
+//       userExist,
+//     });
+//   }
+//   response.send("Erro de requisição");
+// });
 
 export { userRoutes };

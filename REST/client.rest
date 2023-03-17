@@ -5,7 +5,7 @@ GET http://localhost:3333/user
 GET http://localhost:3333/user/a0931d40-e760-4de5-9659-f3480defa4e1
 
 ### Test Conexão
-GET http://localhost:3333/user/y
+GET http://localhost:3333/user/b
 
 ### Test POST
 POST http://localhost:3333/user/
@@ -19,4 +19,13 @@ content-type: application/json
 }
 
 ### DELETE
-DELETE http://localhost:3333/user/364f07d9-6240-4f60-ba6c-1a6c8faeaffa
+DELETE http://localhost:3333/user/6e48fd43-debc-40ef-bd34-4310505afa27
+
+### UPDATE
+PUT http://localhost:3333/user/08c72358-9a48-427c-a549-02d0fbeaad76
+content-type: application/json
+
+{
+    "name": "Corin",
+    "email":"cora@fema.com"
+}
