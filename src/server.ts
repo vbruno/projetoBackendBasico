@@ -10,9 +10,24 @@ server.use(express.json());
 
 const database = new Database();
 
+const table = "user";
+
 server.get("/", (request, response) => {
-  const user = database.select("user");
+  const user = database.select(table);
   response.json(user);
+});
+
+server.get("/:id", (request, response) => {
+  const { id } = request.params;
+
+  const result = database.select(table, id);
+
+  // console.log(result, " - ", typeof result);
+
+  if (result === undefined)
+    response.status(400).json({ msg: "Usuário não encontrado!" });
+
+  response.json(result);
 });
 
 // Parâmetro que esta vindo do CLIENTE - REQUEST
@@ -27,9 +42,26 @@ server.post("/", (request, response) => {
     email,
   };
 
-  database.insert("user", user);
+  database.insert(table, user);
 
   response.status(201).json({ msg: "sucesso!" });
+});
+
+server.delete("/:id", (request, response) => {
+  const { id } = request.params;
+
+  const userExist = database.select(table, id);
+
+  // console.log(result, " - ", typeof result);
+
+  if (userExist === undefined)
+    response.status(400).json({ msg: "Usuário não encontrado!" });
+
+  database.delete(table, id);
+
+  response
+    .status(202)
+    .json({ msg: `Usuário ${userExist.name} foi deletado do banco` });
 });
 
 server.listen(port, () => {
