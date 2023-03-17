@@ -1,4 +1,7 @@
 ### Test Conexão
+GET http://localhost:3333/user
+
+### Test Conexão
 GET http://localhost:3333
 
 ### Test Conexão
