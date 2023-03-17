@@ -22,10 +22,10 @@ content-type: application/json
 DELETE http://localhost:3333/user/6e48fd43-debc-40ef-bd34-4310505afa27
 
 ### UPDATE
-PUT http://localhost:3333/user/08c72358-9a48-427c-a549-02d0fbeaad76
+PUT http://localhost:3333/user/49a368e5-7322-4549-88f0-31f0415e57c5
 content-type: application/json
 
 {
-    "name": "Corin",
-    "email":"cora@fema.com"
+    "name": "Aluno",
+    "email":"aluno@fema.com"
 }

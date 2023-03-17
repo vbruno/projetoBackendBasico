@@ -17,23 +17,28 @@ export class Database {
         this.#database = JSON.parse(data);
       })
       .catch(() => {
-        this.#persist();
+        this.#persist("{}");
       });
   }
 
-  #persist() {
+  #persist(data?: string) {
     console.log(this.#database);
 
-    // fs.writeFile(databasePath, JSON.stringify(this.#database));
+    if (data == "{}") {
+      fs.writeFile(databasePath, JSON.stringify({}, null, 2));
+      this.#database = JSON.parse(data);
+    } else {
+      fs.writeFile(databasePath, JSON.stringify(this.#database, null, 2));
+    }
 
     console.log("---> ", typeof this.#database);
     console.log("---> ", this.#database.toString());
   }
 
   select(table: any, search?: string): IDatabase[] {
-    let data = this.#database[table] ?? [];
+    let data = this.#database[table] ?? {};
 
-    console.log(data);
+    console.log("select data: ", data);
 
     if (search) {
       data = data.filter((row: any) => {
@@ -71,12 +76,12 @@ export class Database {
     }
   }
 
-  // update(table: any, id: string, data: IDatabase) {
-  //   const rowIndex = this.#database[table].findIndex((row) => row.id === id);
+  update(table: any, id: string, data: IDatabase) {
+    const rowIndex = this.#database[table].findIndex((row) => row.id === id);
 
-  //   if (rowIndex > -1) {
-  //     this.#database[table][rowIndex] = { ...data };
-  //     this.#persist();
-  //   }
-  // }
+    if (rowIndex > -1) {
+      this.#database[table][rowIndex] = { ...data };
+      this.#persist();
+    }
+  }
 }
