@@ -2,8 +2,17 @@ import fs from "node:fs/promises";
 
 const databasePath = new URL("../db.json", import.meta.url);
 
+export interface IDatabase {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface IDatabases extends Array<IDatabase> {}
+// interface EnumServiceItems extends Array<EnumServiceItem>{}
+
 export class Database {
-  #database: any = {};
+  #database: IDatabase[][] = [];
 
   constructor() {
     fs.readFile(databasePath, "utf8")
@@ -19,8 +28,10 @@ export class Database {
     fs.writeFile(databasePath, JSON.stringify(this.#database, null, 2));
   }
 
-  select(table: string, search?: any): object {
+  select(table: any, search?: any): IDatabase[] {
     let data = this.#database[table] ?? [];
+
+    console.log(data);
 
     if (search) {
       data = data.filter((row: any) => {
@@ -34,7 +45,7 @@ export class Database {
     return data;
   }
 
-  insert(table: string, data: object): object {
+  insert(table: any, data: IDatabase): IDatabase {
     if (Array.isArray(this.#database[table])) {
       // Se sim entra aqui
       this.#database[table].push(data);
@@ -47,12 +58,14 @@ export class Database {
     return data;
   }
 
-  delete(table: string, id: string) {
+  delete(table: any, id: string) {
     const rowIndex = this.#database[table].findIndex(
       (row: any) => row.id === id
     );
 
     if (rowIndex > -1) {
+      console.log("localizou");
+
       this.#database[table].splice(rowIndex, 1);
       this.#persist();
     }
