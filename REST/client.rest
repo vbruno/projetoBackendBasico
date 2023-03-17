@@ -1,17 +1,14 @@
-### Test Conexão
+### Buscar todo os registro
 GET http://localhost:3333/user
 
 ### Test Conexão
-GET http://localhost:3333
+GET http://localhost:3333/user/a0931d40-e760-4de5-9659-f3480defa4e1
 
 ### Test Conexão
-GET http://localhost:3333/5a5f9cd7-93ea-452f-a128-3bbbfe44b2fb
-
-### Test Conexão
-GET http://localhost:3333/Tiago
+GET http://localhost:3333/user/y
 
 ### Test POST
-POST http://localhost:3333
+POST http://localhost:3333/user/
 content-type: application/json
 
 {
@@ -22,4 +19,4 @@ content-type: application/json
 }
 
 ### DELETE
-DELETE http://localhost:3333/5b428f6b-cc1b-4101-8310-42bd191cfd16
+DELETE http://localhost:3333/user/364f07d9-6240-4f60-ba6c-1a6c8faeaffa
