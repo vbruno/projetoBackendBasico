@@ -18,5 +18,14 @@ content-type: application/json
     "uc":"Programação WEB 3"
 }
 
-### Deletar um usuario do banco
+### Deletar um usuario pelo ID no banco
 DELETE  http://localhost:3333/3f46789e-c05e-4196-a170-2dffe0a99bc0
+
+### Atualizar um usuario pelo ID no Banco
+PUT  http://localhost:3333/1fbb9380-a094-4503-a255-db7a2f98a561
+content-type: application/json
+
+{
+    "name": "Adrino Silva Santos",
+    "email":"adrino.s.santos@fema.com"
+}

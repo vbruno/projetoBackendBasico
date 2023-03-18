@@ -74,9 +74,7 @@ server.put("/:id", (request, response) => {
 
   database.update(table, id, { name, email });
 
-  response
-    .status(201)
-    .json({ msg: `Usuário ${userExist.name} foi alterado banco` });
+  response.status(201).json({ msg: `O ID: {${id}} foi alterado banco` });
 });
 
 server.listen(port, () => {
