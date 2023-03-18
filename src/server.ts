@@ -50,18 +50,33 @@ server.post("/", (request, response) => {
 server.delete("/:id", (request, response) => {
   const { id } = request.params;
 
-  const userExist = database.select(table, id);
+  const userExist: any = database.select(table, id);
 
   // console.log(result, " - ", typeof result);
 
   if (userExist === undefined)
-    response.status(400).json({ msg: "Usuário não encontrado!" });
+    return response.status(400).json({ msg: "Usuário não encontrado!" });
 
   database.delete(table, id);
 
   response
     .status(202)
     .json({ msg: `Usuário ${userExist.name} foi deletado do banco` });
+});
+
+server.put("/:id", (request, response) => {
+  const { id } = request.params;
+  const { name, email } = request.body;
+
+  const userExist: any = database.select(table, id);
+  if (userExist === undefined)
+    return response.status(400).json({ msg: "Usuário não encontrado!" });
+
+  database.update(table, id, { name, email });
+
+  response
+    .status(201)
+    .json({ msg: `Usuário ${userExist.name} foi alterado banco` });
 });
 
 server.listen(port, () => {
