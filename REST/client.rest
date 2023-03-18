@@ -1,14 +1,14 @@
 ### Buscar todo os ID
-GET http://localhost:3333
+GET http://localhost:3333/user/
 
 ### Buscar ID especifico
-GET http://localhost:3333/49a368e5-7322-4549-88f0-31f0415e57c5
+GET http://localhost:3333/user/49a368e5-7322-4549-88f0-31f0415e57c5
 
 ### Buscar ID especifico
-GET http://localhost:3333/49a368e5-7322-4549-88f0-31f0415e5
+GET http://localhost:3333/user/49a368e5-7322-4549-88f0-31f0415e5
 
 ### Inserir Informação no banco
-POST http://localhost:3333
+POST http://localhost:3333user/
 content-type: application/json
 
 {
@@ -19,13 +19,16 @@ content-type: application/json
 }
 
 ### Deletar um usuario pelo ID no banco
-DELETE  http://localhost:3333/3f46789e-c05e-4196-a170-2dffe0a99bc0
+DELETE  http://localhost:3333/user/f5d0ead8-5215-4461-930d-6147478bcb0b
 
 ### Atualizar um usuario pelo ID no Banco
-PUT  http://localhost:3333/1fbb9380-a094-4503-a255-db7a2f98a561
+PUT  http://localhost:3333/user/1fbb9380-a094-4503-a255-db7a2f98a561
 content-type: application/json
 
 {
     "name": "Adrino Silva Santos",
     "email":"adrino.s.santos@fema.com"
 }
+
+###
+GET http://localhost:3333/user/
